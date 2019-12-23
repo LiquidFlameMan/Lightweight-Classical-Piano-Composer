@@ -63,7 +63,7 @@ def create_network(network_input, n_vocab):
     model.add(Activation('softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
     # Загрузка весов
-    model.load_weights('weight_new/weights-improvement-107-0.5131-bigger.hdf5')
+    model.load_weights('weights.hdf5')
 
     return model
 
