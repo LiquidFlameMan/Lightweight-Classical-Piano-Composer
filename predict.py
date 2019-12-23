@@ -9,10 +9,12 @@ from keras.layers import Activation
 
 
 def generate():
+    # Загрузка списка нот, подотовленного на этапе обучения
     with open('data/notes', 'rb') as filepath:
         notes = pickle.load(filepath)
-
+    # Создание отсортированного множества уникальных нот
     pitchnames = sorted(set(item for item in notes))
+    # Получение количества уникальных нот
     n_vocab = len(set(notes))
 
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab)
@@ -60,7 +62,7 @@ def create_network(network_input, n_vocab):
     model.add(Dense(n_vocab))
     model.add(Activation('softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
-
+    # Загрузка весов
     model.load_weights('weight_new/weights-improvement-107-0.5131-bigger.hdf5')
 
     return model
